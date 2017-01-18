@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.widget.ImageView;
+import com.qq.qzone.a133689237.anmo.Ad.AdUtil;
 import com.qq.qzone.a133689237.anmo.Vibrate.VibratorUtil;
 
 public class MainActivity extends Activity implements View.OnClickListener {
@@ -17,6 +18,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         setContentView(R.layout.activity_main);
 
         initView();
+        new AdUtil(MainActivity.this);
     }
 
     private void initView(){
