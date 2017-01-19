@@ -7,4 +7,8 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="mDialog" parent="AppTheme">
+        <item name="android:textColor">#FAFAFA</item>
+    </style>
+
 </resources>

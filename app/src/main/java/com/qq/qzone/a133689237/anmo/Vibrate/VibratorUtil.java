@@ -6,14 +6,22 @@ import android.os.Vibrator;
 
 public class VibratorUtil {
 
-    public static void Vibrate(Activity activity, long[] pattern) {
-        Vibrator vib = (Vibrator) activity.getSystemService(Service.VIBRATOR_SERVICE);
+    private static Vibrator vib;
+
+    public VibratorUtil(Activity activity){
+        vib = (Vibrator) activity.getSystemService(Service.VIBRATOR_SERVICE);
+    }
+
+    public void Vibrate(long[] pattern) {
         vib.vibrate(pattern, 0);
     }
 
-    public static void cancel(Activity activity) {
-        Vibrator vib = (Vibrator) activity.getSystemService(Service.VIBRATOR_SERVICE);
+    public void cancel() {
         vib.cancel();
+    }
+
+    public boolean hasVib(){
+        return vib.hasVibrator();
     }
 
 }
