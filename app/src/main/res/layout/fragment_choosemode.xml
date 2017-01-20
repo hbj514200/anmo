@@ -4,7 +4,7 @@
                 android:layout_height="wrap_content"
                 style="@style/mDialog"
                 android:orientation="vertical"
-                android:background="#1d214c" >
+                android:background="@drawable/dialog_background" >
 
     <ImageView
         android:id="@+id/dia_imageView"
@@ -33,12 +33,12 @@
         android:padding="7dp"
         android:layout_marginRight="4dp"
         android:layout_marginBottom="4dp"
-        android:text="确定"
+        android:text="OK"
         android:textColorHint="#FAFAFA"
         android:textColorHighlight="#FAFAFA"
         android:textColorLink="#FAFAFA"
         android:textSize="18sp"
-        android:background="#1d214c"
-        android:textColor="#d94335" />
+        android:background="#00000000"
+        android:textColor="#e75345" />
 
 </RelativeLayout>

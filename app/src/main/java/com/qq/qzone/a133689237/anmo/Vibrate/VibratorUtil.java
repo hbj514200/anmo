@@ -20,9 +20,5 @@ public class VibratorUtil {
         vib.cancel();
     }
 
-    public boolean hasVib(){
-        return vib.hasVibrator();
-    }
-
 }
 

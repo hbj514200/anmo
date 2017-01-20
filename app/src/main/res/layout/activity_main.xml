@@ -3,16 +3,53 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/main_background" >
+
+    <com.wang.avi.AVLoadingIndicatorView
+        android:layout_marginTop="50dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/main_avi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:indicatorColor="#FAFAFA"
+        android:background="@drawable/avl_background"
+        style="@style/AVLoadingIndicatorView.LargeMe"
+        app:indicatorName="LineScaleIndicator" />
 
     <ImageView
         android:id="@+id/main_control_button"
         android:layout_centerHorizontal="true"
-        android:src="@drawable/main_control_button_start"
+        android:src="@drawable/main_start_button"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="85dp"
+        android:layout_marginBottom="50dp"
         android:layout_width="wrap_content"
+        android:paddingLeft="0dp"
+        android:paddingRight="0dp"
         android:layout_height="90dp" />
+
+    <ImageView
+        android:id="@+id/main_choose_button"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/main_mode_button"
+        android:layout_above="@id/main_control_button"
+        android:layout_width="wrap_content"
+        android:layout_height="85dp"
+        android:paddingLeft="0dp"
+        android:paddingRight="0dp"
+        android:layout_marginBottom="0dp" />
+
+    <TextView
+        android:id="@+id/main_mode_text"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="10dp"
+        android:layout_above="@id/main_choose_button"
+        android:textSize="20sp"
+        android:textColor="#FAFAFA"
+        android:text="一号震动模式"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
     <ImageView
         android:id="@+id/main_close_button"

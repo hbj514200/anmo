@@ -6,15 +6,20 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.widget.ImageView;
+import android.widget.TextView;
 import com.qq.qzone.a133689237.anmo.Ad.AdUtil;
 import com.qq.qzone.a133689237.anmo.Vibrate.Factory;
 import com.qq.qzone.a133689237.anmo.Vibrate.VibratorUtil;
+import com.wang.avi.AVLoadingIndicatorView;
 
 public class MainActivity extends Activity implements View.OnClickListener {
 
-    private static VibratorUtil vib;
-    public int zhonglei  = 1;                 //震动类型
+    private static VibratorUtil vib;          //震动管理器
+    private int zhonglei  = 1;                 //震动类型
     private boolean vibing = false;           //是否在震动
+    private ImageView controlButton;
+    private TextView modeText;
+    private AVLoadingIndicatorView avlView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,9 +37,13 @@ public class MainActivity extends Activity implements View.OnClickListener {
         closeButton.setOnClickListener(this);
         ImageView menuButton = (ImageView) findViewById(R.id.main_menu_button);
         menuButton.setOnClickListener(this);
-        ImageView controlButton = (ImageView) findViewById(R.id.main_control_button);
+        controlButton = (ImageView) findViewById(R.id.main_control_button);
         controlButton.setOnClickListener(this);
-
+        ImageView chooseButton = (ImageView) findViewById(R.id.main_choose_button);
+        chooseButton.setOnClickListener(this);
+        modeText = (TextView) findViewById(R.id.main_mode_text);
+        avlView = (AVLoadingIndicatorView) findViewById(R.id.main_avi);
+        avlView.hide();
     }
 
     @Override
@@ -51,26 +60,33 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 if (vibing)     stop();
                 else            start();
                 break;
+            case R.id.main_choose_button :
+                stop();
+                ChooseModeFragment dialog = new ChooseModeFragment();
+                dialog.mMainActivity = this;
+                dialog.show(getFragmentManager(), "CHOOSE_MODE");
+                break;
         }
     }
 
     public void changeMode(int flag){
         zhonglei = flag;
-        stop();
-        start();
+        if (vibing)     start();
+        modeText.setText( Factory.getName(flag) );
     }
 
     private void start(){
-        //换成方形
-        vib.Vibrate(Factory.create(1));
+        vib.Vibrate(Factory.create(zhonglei));
         vibing = true;
+        controlButton.setImageResource(R.drawable.main_stop_button);
+        avlView.show();
     }
 
     private void stop(){
-        //换成圆心
         vib.cancel();
         vibing = false;
+        controlButton.setImageResource(R.drawable.main_start_button);
+        avlView.hide();
     }
-
 
 }
