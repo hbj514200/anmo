@@ -47,7 +47,7 @@
         android:layout_above="@id/main_choose_button"
         android:textSize="20sp"
         android:textColor="#FAFAFA"
-        android:text="一号震动模式"
+        android:text="@string/one_mode"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 

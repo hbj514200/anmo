@@ -1,7 +1,10 @@
 package com.qq.qzone.a133689237.anmo;
 
 import android.app.Activity;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -15,11 +18,12 @@ import com.wang.avi.AVLoadingIndicatorView;
 public class MainActivity extends Activity implements View.OnClickListener {
 
     private static VibratorUtil vib;          //震动管理器
-    private int zhonglei  = 1;                 //震动类型
+    public int zhonglei  = 1;                 //震动类型
     private boolean vibing = false;           //是否在震动
     private ImageView controlButton;
     private TextView modeText;
     private AVLoadingIndicatorView avlView;
+    private ChooseModeFragment dialog = new ChooseModeFragment();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +34,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
         initView();
         vib = new VibratorUtil(this);
         new AdUtil(MainActivity.this);
+        Factory.mContext = this;
+        borad();
     }
 
     private void initView(){
@@ -62,7 +68,6 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 break;
             case R.id.main_choose_button :
                 stop();
-                ChooseModeFragment dialog = new ChooseModeFragment();
                 dialog.mMainActivity = this;
                 dialog.show(getFragmentManager(), "CHOOSE_MODE");
                 break;
@@ -71,8 +76,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
     public void changeMode(int flag){
         zhonglei = flag;
-        if (vibing)     start();
         modeText.setText( Factory.getName(flag) );
+        if (vibing)     start();
     }
 
     private void start(){
@@ -88,5 +93,25 @@ public class MainActivity extends Activity implements View.OnClickListener {
         controlButton.setImageResource(R.drawable.main_start_button);
         avlView.hide();
     }
+
+    public void borad(){
+        //防止熄屏停止震动
+        BroadcastReceiver mIntentReceiver = new BroadcastReceiver() {
+            public void onReceive(Context context, Intent intent) {
+                if (intent.getAction().equals(Intent.ACTION_SCREEN_OFF)) {
+                    synchronized (vib) {
+                        if (vibing){
+                            vib.cancel();
+                            vib.Vibrate(Factory.create(zhonglei));
+                        }
+                    }
+                }
+            }
+        };
+        IntentFilter filter = new IntentFilter();
+        filter.addAction(Intent.ACTION_SCREEN_OFF);
+        registerReceiver(mIntentReceiver, filter);
+    }
+
 
 }

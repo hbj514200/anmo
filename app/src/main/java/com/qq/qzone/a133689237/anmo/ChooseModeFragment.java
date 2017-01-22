@@ -10,16 +10,22 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
+import com.qq.qzone.a133689237.anmo.Vibrate.Factory;
+
 public class ChooseModeFragment extends DialogFragment implements View.OnClickListener {
 
     public MainActivity mMainActivity;
     private ListView mListView;
-    private String[] strs = new String[]{"一号震动模式", "二号震动模式", "三号震动模式", "四号震动模式"};
+    private String[] strs = new String[4];
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_choosemode, container);
         getDialog().requestWindowFeature(Window.FEATURE_NO_TITLE);
+
+        for (int i=0; i<=3; i++){
+            strs[i] = Factory.getName(i+1);
+        }
 
         mListView = (ListView) view.findViewById(R.id.dialog_list_view);
         mListView.setAdapter(new ArrayAdapter<String>(getActivity(), R.layout.dialog_listview_item, strs));

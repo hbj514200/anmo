@@ -25,7 +25,7 @@ public class AdUtil {
 
     private InterstitialAd newInterstitialAd(Context context) {
         InterstitialAd interstitialAd = new InterstitialAd(context);
-        interstitialAd.setAdUnitId("ca-app-pub-3940256099942544/1033173712");
+        interstitialAd.setAdUnitId("ca-app-pub-6630898560544189/2911375352");
         return interstitialAd;
     }
 
@@ -35,8 +35,7 @@ public class AdUtil {
     }
 
     private void loadInterstitial() {
-        AdRequest adRequest = new AdRequest.Builder()
-                .setRequestAgent("android_studio:ad_template").build();
+        AdRequest adRequest = new AdRequest.Builder().build();
         mInterstitialAd.loadAd(adRequest);
     }
 
@@ -49,6 +48,5 @@ public class AdUtil {
             }
         }).start();
     }
-
 
 }

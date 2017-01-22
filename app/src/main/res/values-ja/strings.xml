@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">マッサージ器</string>
+
+    <string name="one_mode">1つの振動モード</string>
+    <string name="two_mode">II振動モード</string>
+    <string name="three_mode">第三振動モード</string>
+    <string name="four_mode">第四振動モード</string>
+
+</resources>

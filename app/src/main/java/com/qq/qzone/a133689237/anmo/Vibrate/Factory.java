@@ -1,6 +1,12 @@
 package com.qq.qzone.a133689237.anmo.Vibrate;
 
+import android.content.Context;
+
+import com.qq.qzone.a133689237.anmo.R;
+
 public class Factory {
+
+    public static Context mContext;
 
     public static long[] create(int flag){
         long[] one =   {0, 1000, 0, 1000};
@@ -16,10 +22,10 @@ public class Factory {
     }
 
     public static String getName(int flag){
-        String one = "一号震动模式";
-        String two = "二号震动模式";
-        String three = "三号震动模式";
-        String four = "四号震动模式";
+        String one = mContext.getString(R.string.one_mode);
+        String two = mContext.getString(R.string.two_mode);
+        String three = mContext.getString(R.string.three_mode);
+        String four = mContext.getString(R.string.four_mode);
         if (flag == 1)      return one;
         if (flag == 2)      return two;
         if (flag == 3)      return three;

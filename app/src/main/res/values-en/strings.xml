@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Vibrator</string>
+
+    <string name="one_mode">First vibration mode</string>
+    <string name="two_mode">Second vibration mode</string>
+    <string name="three_mode">Third vibration mode</string>
+    <string name="four_mode">Fourth vibration mode</string>
+
+</resources>
