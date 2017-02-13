@@ -6,6 +6,10 @@ import android.os.Message;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.InterstitialAd;
 
+/**
+ * 该类是一个Admob的插屏广告控制类，用于定时弹出全屏插屏的广告。
+ * 使用方法：        new AdUtil(Context context);     即可。
+ */
 public class AdUtil {
 
     private InterstitialAd mInterstitialAd;

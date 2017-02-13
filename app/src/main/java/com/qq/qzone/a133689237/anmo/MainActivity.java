@@ -10,9 +10,10 @@ import android.view.View;
 import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
-import com.qq.qzone.a133689237.anmo.Ad.AdUtil;
+import com.qq.qzone.a133689237.anmo.Ad.Adbanner;
 import com.qq.qzone.a133689237.anmo.Vibrate.Factory;
 import com.qq.qzone.a133689237.anmo.Vibrate.VibratorUtil;
+import com.google.android.gms.ads.AdView;
 import com.wang.avi.AVLoadingIndicatorView;
 
 public class MainActivity extends Activity implements View.OnClickListener {
@@ -33,7 +34,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
         initView();
         vib = new VibratorUtil(this);
-        new AdUtil(MainActivity.this);
+        adBanner();
         Factory.mContext = this;
         borad();
     }
@@ -113,5 +114,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
         registerReceiver(mIntentReceiver, filter);
     }
 
+    private void adBanner(){
+        AdView mAdView = (AdView) findViewById(R.id.adView);
+        new Adbanner(mAdView, 25000, 60000);
+    }
 
 }
